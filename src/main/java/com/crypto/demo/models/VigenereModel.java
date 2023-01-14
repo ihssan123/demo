@@ -22,7 +22,7 @@ public class VigenereModel {
     }
 
     public void setKey(String key) {
-        Key = key;
+        this.Key = key;
     }
 
 

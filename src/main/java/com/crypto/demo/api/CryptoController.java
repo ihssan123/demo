@@ -1,13 +1,17 @@
 package com.crypto.demo.api;
 
 
+import com.crypto.demo.models.AffineBrutModel;
 import com.crypto.demo.models.InputModel;
+import com.crypto.demo.models.VigenereBrutModel;
 import com.crypto.demo.models.VigenereModel;
 import com.crypto.demo.service.CryptoService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -32,7 +36,15 @@ public class CryptoController {
     public String DeCryptAffine(@RequestBody InputModel model){
         return cryptoService.AffineDecrypt(model);
     }
+    @PostMapping("/affine/brut")
+    public List<InputModel> AffineBruteCrypt(@RequestBody AffineBrutModel model){
+        return cryptoService.AffineBruteDecrypt(model);
+    }
 
+    @PostMapping("/viginere/brut")
+    public List<VigenereModel> ViginereBruteCrypt(@RequestBody VigenereBrutModel model){
+        return cryptoService.bruteForceVigenere(model);
+    }
     @PostMapping("/rsa/encrypt")
     public String EncryptRSA(@RequestBody InputModel model) throws Exception {
         return cryptoService.RSAEncrypt(model);
