@@ -11,7 +11,7 @@ import java.security.*;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-
+import java.util.*;
 @Service
 public class CryptoService {
 
@@ -130,8 +130,12 @@ public class CryptoService {
     }
      
     public List<InputModel> AffineBruteDecrypt(AffineBrutModel model) {
+    	var AllowedValues = new ArrayList<Integer>( Arrays.asList(
+    			1,
+    			3,5,7,9,11,15,17,19,21,23,25));
         List<InputModel> results = new ArrayList<InputModel>();
         for (int a = 1; a < 26; a++) {
+        	if(!AllowedValues.contains(a)) continue;
             for (int b = 0; b < 26; b++) {
                 InputModel myModel = new InputModel(model.getMessage(), a,b);
                 var result = GetModelAffineDecrypt(myModel);
